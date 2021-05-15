@@ -1,4 +1,5 @@
 const Blog = require("../models/Blog");
+const User = require("../models/User");
 
 exports.getIndex = (req, res, next) => {
   res.render("index");
@@ -29,9 +30,14 @@ exports.loginGet = (req, res, next) => {
   res.render("login");
 };
 
-exports.signupPost = (req, res, next) => {
-  const user = req.body;
-  res.status(201).send({ data: user, message: "new signup" });
+exports.signupPost = async (req, res, next) => {
+  try {
+    const { email, password } = req.body;
+    const user = await User.create({ email, password });
+    res.status(201).send({ success: true, data: user });
+  } catch (err) {
+    res.status(404).send(err.message);
+  }
 };
 
 exports.loginPost = (req, res, next) => {
