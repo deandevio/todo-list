@@ -7,6 +7,11 @@ const handleErrors = (err) => {
     return (error = `Invalid ${err.path}: ${err.value}`);
   }
 
+  // Duplicate error code
+  if (err.code === 11000) {
+    return (error = `This email is already registered`);
+  }
+
   // Validation error
   if (err.message.includes("user validation failed")) {
     Object.values(err.errors).forEach(({ properties }) => {
