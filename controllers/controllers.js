@@ -14,12 +14,23 @@ exports.getBlogs = (req, res, next) => {
   res.render("blogs");
 };
 
-exports.deleteBlogs = async (req, res, next) => {
+exports.deleteBlog = async (req, res, next) => {
+  try {
+    const blog = await Blog.findByIdAndDelete(req.params.id);
+    res.status(200).send({ success: true, data: blog });
+  } catch (err) {
+    const error = handleErrors(err);
+    res.status(400).send({ success: false, error: error });
+  }
+};
+
+exports.deleteUser = async (req, res, next) => {
   try {
     const user = await User.findByIdAndDelete(req.params.id);
     res.status(200).send({ success: true, data: user });
   } catch (err) {
-    res.status(404).json({ success: false, message: err.message });
+    const error = handleErrors(err);
+    res.status(400).send({ success: false, error: error });
   }
 };
 

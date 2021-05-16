@@ -1,7 +1,11 @@
 // Handle errors
 const handleErrors = (err) => {
-  console.log(err.message, err.code);
   let errors = { email: "", password: "" };
+
+  // Check if CastError
+  if (err.name === "CastError") {
+    return (error = `Invalid ${err.path}: ${err.value}`);
+  }
 
   // Validation error
   if (err.message.includes("user validation failed")) {
@@ -9,6 +13,7 @@ const handleErrors = (err) => {
       errors[properties.path] = properties.message;
     });
   }
+
   return errors;
 };
 

@@ -9,7 +9,8 @@ const {
   loginGet,
   signupPost,
   loginPost,
-  deleteBlogs,
+  deleteBlog,
+  deleteUser,
 } = require("../controllers/controllers");
 
 router.route("/").get(getIndex);
@@ -17,6 +18,7 @@ router.route("/about").get(getAbout);
 router.route("/blogs").get(getBlogs).post(postBlogs);
 router.route("/signup").get(signupGet).post(signupPost);
 router.route("/login").get(loginGet).post(loginPost);
-router.route("/blogs/:id").delete(deleteBlogs);
+router.route("/blogs/:id").delete(deleteBlog);
+router.route("/users/:id").delete(deleteUser);
 
 module.exports = router;
