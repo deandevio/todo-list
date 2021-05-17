@@ -1,6 +1,11 @@
 const Blog = require("../models/Blog");
 const User = require("../models/User");
+const jwt = require("jsonwebtoken");
 const handleErrors = require("../middleware/errorHandle");
+const createToken = require("../middleware/createToken");
+const dotenv = require("dotenv");
+
+dotenv.config({ path: "../config/config.env" });
 
 exports.getIndex = (req, res, next) => {
   res.render("index");
@@ -52,10 +57,12 @@ exports.loginGet = (req, res, next) => {
 };
 
 exports.signupPost = async (req, res, next) => {
+  const { email, password } = req.body;
   try {
-    const { email, password } = req.body;
     const user = await User.create({ email, password });
-    res.status(201).send({ success: true, data: user });
+    const token = createToken(user._id);
+    res.cookie("jwt", token, { httpOnly: true, maxAge: 1000 * 60 * 60 * 24 * 3 });
+    res.status(201).json({ success: true, user: user._id });
   } catch (err) {
     const errors = handleErrors(err);
     res.status(400).send({ success: false, error: errors });
@@ -64,16 +71,4 @@ exports.signupPost = async (req, res, next) => {
 
 exports.loginPost = (req, res, next) => {
   res.status(201).send("New login");
-};
-
-exports.setCookies = (req, res, next) => {
-  res.cookie("newUser", false);
-  res.cookie("isEmployee", true, { maxAge: 1000 * 60 * 60 * 24, httpOnly: true });
-  res.send("you got the cookies!");
-};
-
-exports.getCookies = (req, res, next) => {
-  const cookies = req.cookies;
-  console.log(cookies);
-  res.json(cookies);
 };

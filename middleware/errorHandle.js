@@ -1,4 +1,6 @@
 // Handle errors
+const jwt = require("jsonwebtoken");
+
 const handleErrors = (err) => {
   let errors = { email: "", password: "" };
 
