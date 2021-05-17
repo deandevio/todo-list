@@ -3,6 +3,7 @@ const dotenv = require("dotenv");
 const DB_CONNECT = require("./config/db");
 const app = express();
 const router = require("./routes/routes");
+const cookieParser = require("cookie-parser");
 
 dotenv.config({ path: "./config/config.env" });
 
@@ -16,6 +17,7 @@ DB_CONNECT();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
+app.use(cookieParser());
 
 // Router
 app.use("/", router);

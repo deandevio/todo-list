@@ -65,3 +65,15 @@ exports.signupPost = async (req, res, next) => {
 exports.loginPost = (req, res, next) => {
   res.status(201).send("New login");
 };
+
+exports.setCookies = (req, res, next) => {
+  res.cookie("newUser", false);
+  res.cookie("isEmployee", true, { maxAge: 1000 * 60 * 60 * 24, httpOnly: true });
+  res.send("you got the cookies!");
+};
+
+exports.getCookies = (req, res, next) => {
+  const cookies = req.cookies;
+  console.log(cookies);
+  res.json(cookies);
+};
