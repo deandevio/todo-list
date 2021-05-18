@@ -1,6 +1,5 @@
 const Blog = require("../models/Blog");
 const User = require("../models/User");
-const jwt = require("jsonwebtoken");
 const handleErrors = require("../middleware/errorHandle");
 const createToken = require("../middleware/createToken");
 const dotenv = require("dotenv");
@@ -65,7 +64,7 @@ exports.signupPost = async (req, res, next) => {
     res.status(201).json({ success: true, user: user._id });
   } catch (err) {
     const errors = handleErrors(err);
-    res.status(400).send({ success: false, error: errors });
+    res.status(400).send({ success: false, errors });
   }
 };
 
