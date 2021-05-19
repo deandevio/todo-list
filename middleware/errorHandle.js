@@ -2,7 +2,18 @@
 const jwt = require("jsonwebtoken");
 
 const handleErrors = (err) => {
+  console.log(err.message, err.code);
   let errors = { email: "", password: "" };
+
+  // Incorrect email
+  if (err.message === "Incorrect Email!") {
+    errors.email = "This email is not registered";
+  }
+
+  //Incorrect password\
+  if (err.message === "Incorrect password!") {
+    errors.password = "Wrong password, please try again";
+  }
 
   // Check if CastError
   if (err.name === "CastError") {

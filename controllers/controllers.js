@@ -68,6 +68,15 @@ exports.signupPost = async (req, res, next) => {
   }
 };
 
-exports.loginPost = (req, res, next) => {
-  res.status(201).send("New login");
+exports.loginPost = async (req, res, next) => {
+  const { email, password } = req.body;
+  try {
+    const user = await User.login(email, password);
+    const token = createToken(user._id);
+    res.cookie("jwt", token, { httpOnly: true, maxAge: 1000 * 60 * 60 * 24 * 3 });
+    res.status(200).json({ success: true, user: user._id });
+  } catch (err) {
+    const errors = handleErrors(err);
+    res.status(400).json({ success: false, errors });
+  }
 };

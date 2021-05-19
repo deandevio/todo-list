@@ -17,23 +17,13 @@
           <div class="email error"></div>
           <label for="password">Password</label>
           <input type="password" name="password" required />
+          <div class="password error"></div>
           <button>Submit</button>
         </form>
       </div>
     </main>
-    <script>
-      const form = document.querySelector("form");
-
-      form.addEventListener("submit", (e) => {
-        e.preventDefault();
-
-        // Get the values
-        const email = form.email.value;
-        const password = form.password.value;
-        console.log(email, password);
-      });
-    </script>
 
     <footer><%- include('./partials/footer'); %></footer>
+    <script type="text/javascript" src="/login.js"></script>
   </body>
 </html>
