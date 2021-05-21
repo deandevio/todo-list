@@ -3,7 +3,7 @@ body {
   max-width: 1200px;
   margin: 20px auto;
   padding: 0 20px;
-  font-family: "Noto Serif", serif;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   max-width: 1200px;
 }
 p,
@@ -128,4 +128,19 @@ textarea {
   font-family: "Courier New", Courier, monospace;
   font-weight: bold;
   font-size: smaller;
+}
+
+.btn {
+  background-color: khaki;
+  border-radius: 1em;
+}
+
+.loginbtn {
+  position: absolute;
+  margin-left: 45em;
+}
+
+.signupbtn {
+  position: relative;
+  margin-left: 35em;
 }
