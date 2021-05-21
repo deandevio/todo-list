@@ -51,6 +51,10 @@ exports.signupGet = (req, res, next) => {
   res.render("signup");
 };
 
+exports.logoutGet = (req, res, next) => {
+  res.render("index");
+};
+
 exports.loginGet = (req, res, next) => {
   res.render("login");
 };

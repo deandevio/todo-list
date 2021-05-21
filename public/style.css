@@ -136,11 +136,14 @@ textarea {
 }
 
 .loginbtn {
-  position: absolute;
-  margin-left: 45em;
+  position: relative;
 }
 
 .signupbtn {
   position: relative;
-  margin-left: 35em;
+}
+
+.logoutbtn {
+  position: relative;
+  margin-left: 12vw;
 }
