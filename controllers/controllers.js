@@ -3,7 +3,6 @@ const User = require("../models/User");
 const handleErrors = require("../middleware/errorHandle");
 const createToken = require("../middleware/createToken");
 const dotenv = require("dotenv");
-
 dotenv.config({ path: "../config/config.env" });
 
 exports.getIndex = (req, res, next) => {
@@ -84,3 +83,5 @@ exports.loginPost = async (req, res, next) => {
     res.status(400).json({ success: false, errors });
   }
 };
+
+// Handle the todo list routes
