@@ -17,6 +17,7 @@ const userSchema = new mongoose.Schema({
   },
 });
 
+// This is ran by the database before the document is saved
 userSchema.pre("save", async function (next) {
   const salt = await bcrypt.genSalt();
   this.password = await bcrypt.hash(this.password, salt);
@@ -24,7 +25,6 @@ userSchema.pre("save", async function (next) {
 });
 
 // Static method to login user
-
 userSchema.statics.login = async function (email, password) {
   const user = await this.findOne({ email });
   if (user) {
