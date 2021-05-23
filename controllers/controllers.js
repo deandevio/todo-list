@@ -85,3 +85,6 @@ exports.loginPost = async (req, res, next) => {
 };
 
 // Handle the todo list routes
+exports.getTodoList = (req, res, next) => {
+  res.render("todo");
+};
