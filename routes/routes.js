@@ -13,8 +13,9 @@ const {
   deleteUser,
   logoutGet,
 } = require("../controllers/controllers");
-const { requireAuth } = require("../middleware/authMiddleware");
+const { requireAuth, checkUser } = require("../middleware/authMiddleware");
 
+router.route("*").get(checkUser);
 router.route("/").get(getIndex);
 router.route("/about").get(getAbout);
 router.route("/blogs").get(requireAuth, getBlogs).post(postBlogs);

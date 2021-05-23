@@ -51,7 +51,8 @@ exports.signupGet = (req, res, next) => {
 };
 
 exports.logoutGet = (req, res, next) => {
-  res.render("index");
+  res.cookie("jwt", "", { maxAge: 1 });
+  res.redirect("/");
 };
 
 exports.loginGet = (req, res, next) => {
@@ -82,9 +83,4 @@ exports.loginPost = async (req, res, next) => {
     const errors = handleErrors(err);
     res.status(400).json({ success: false, errors });
   }
-};
-
-// Handle the todo list routes
-exports.getTodoList = (req, res, next) => {
-  res.render("todo");
 };

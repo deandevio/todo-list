@@ -145,5 +145,13 @@ textarea {
 
 .logoutbtn {
   position: relative;
-  margin-left: 10vw;
+  margin-left: 2vw;
+}
+
+.welcome {
+  position: relative;
+  color: royalblue;
+  font-size: smaller;
+  margin-left: 7vw;
+  margin-bottom: 1vh;
 }
